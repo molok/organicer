@@ -43,7 +43,7 @@ export default class ActionButton extends PureComponent {
       additionalClassName || '',
       {
         fas: !letter,
-        'fa-sm': !letter,
+        'fa-lg': !letter,
         [`fa-${iconName}`]: !letter,
         'action-drawer__btn--with-sub-icon': !!subIconName,
         'btn--disabled': isDisabled,
