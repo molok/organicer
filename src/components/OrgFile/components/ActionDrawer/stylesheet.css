@@ -21,6 +21,7 @@
 
   transition-property: opacity;
   transition-duration: 0.2s;
+  background: transparent;
 }
 
 .action-drawer__done-btn {

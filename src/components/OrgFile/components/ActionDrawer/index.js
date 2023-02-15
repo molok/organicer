@@ -29,6 +29,7 @@ const ActionDrawer = ({
   online,
   shouldDisableSyncButtons,
   activeClocks,
+  isNarrowedHeaderActive
 }) => {
   const [isDisplayingArrowButtons, setIsDisplayingArrowButtons] = useState(false);
   const [isDisplayingCaptureButtons, setIsDisplayingCaptureButtons] = useState(false);
@@ -275,7 +276,19 @@ const ActionDrawer = ({
     );
   };
 
-  const handleAgendaClick = () => base.activatePopup('agenda');
+  // const handleAgendaClick = () => base.activatePopup('agenda');
+  const handleShowTitleModal = () => {
+    base.activatePopup('title-editor');
+  }
+
+  const handleShowDescriptionModal = () => {
+    base.activatePopup('description-editor');
+  }
+
+  const handleNarrow = () => { org.narrowHeader(selectedHeaderId); }
+  const handleWiden = () => { org.widenHeader(selectedHeaderId); }
+  const handleAddNewHeader = () => { org.addHeaderAndEdit(selectedHeaderId)}
+  const handleAddNestedHeader = () => { org.addNestedHeaderAndEdit(selectedHeaderId); }
 
   return (
     <div className="action-drawer-container nice-scroll">
@@ -306,7 +319,7 @@ const ActionDrawer = ({
           <ActionButton
             iconName="heading"
             isDisabled={false}
-            // onClick={handleAgendaClick}
+            onClick={handleShowTitleModal}
             style={{
               opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
             }}
@@ -316,7 +329,7 @@ const ActionDrawer = ({
           <ActionButton
             iconName="align-left"
             isDisabled={false}
-            // onClick={handleAgendaClick}
+            onClick={handleShowDescriptionModal}
             style={{
               opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
             }}
@@ -326,7 +339,7 @@ const ActionDrawer = ({
           <ActionButton
             iconName="plus"
             isDisabled={false}
-            // onClick={handleAgendaClick}
+            onClick={handleAddNewHeader}
             style={{
               opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
             }}
@@ -336,22 +349,35 @@ const ActionDrawer = ({
           <ActionButton
             iconName="arrow-circle-right"
             isDisabled={false}
-            // onClick={handleAgendaClick}
+            onClick={handleAddNestedHeader}
             style={{
               opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
             }}
             tooltip="Create new nested header"
           />
 
+          { isNarrowedHeaderActive ?
           <ActionButton
             iconName="expand"
             isDisabled={false}
-            // onClick={handleAgendaClick}
+            onClick={handleWiden}
             style={{
               opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
             }}
-            tooltip="Create new nested header"
+            tooltip="Widen"
           />
+            :
+            <ActionButton
+              iconName="compress"
+              isDisabled={false}
+              onClick={handleNarrow}
+              style={{
+                opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+              }}
+              tooltip="Narrow"
+            />
+
+          }
 
 
           <ActionButton
