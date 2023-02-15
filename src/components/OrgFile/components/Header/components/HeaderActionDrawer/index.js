@@ -22,47 +22,41 @@ export default class HeaderActionDrawer extends PureComponent {
     const {
       onTitleClick,
       onDescriptionClick,
-      onTagsClick,
-      onPropertiesClick,
       isNarrowed,
       onNarrow,
       onWiden,
       onAddNewHeader,
-      onDeadlineClick,
-      onClockInOutClick,
-      onScheduledClick,
-      hasActiveClock,
-      onShareHeader,
-      onRefileHeader,
-      onAddNote,
+      onAddNestedHeader,
     } = this.props;
 
     return (
       <div className="header-action-drawer-container">
         <div className="header-action-drawer__row">
           {this.iconWithFFClickCatcher({
-            className: 'fas fa-pencil-alt fa-lg',
+            className: 'fas fa-heading fa-lg',
             onClick: onTitleClick,
             title: 'Edit header title',
           })}
 
           {this.iconWithFFClickCatcher({
-            className: 'fas fa-edit fa-lg',
+            className: 'fas fa-align-left fa-lg',
             onClick: onDescriptionClick,
             title: 'Edit header description',
             testId: 'edit-header-title',
           })}
 
           {this.iconWithFFClickCatcher({
-            className: 'fas fa-tags fa-lg',
-            onClick: onTagsClick,
-            title: 'Modify tags',
+            className: 'fas fa-plus fa-lg',
+            onClick: onAddNewHeader,
+            testId: 'header-action-plus',
+            title: 'Create new header below',
           })}
 
           {this.iconWithFFClickCatcher({
-            className: 'fas fa-list fa-lg',
-            onClick: onPropertiesClick,
-            title: 'Modify properties',
+            className: 'fas fa-arrow-circle-right fa-lg',
+            onClick: onAddNestedHeader,
+            testId: 'header-action-plusnested',
+            title: 'Create a nested header',
           })}
 
           {isNarrowed
@@ -78,57 +72,6 @@ export default class HeaderActionDrawer extends PureComponent {
                 title:
                   'Narrow to subtree (focusing in on some portion of the buffer, making the rest temporarily inaccessible.)',
               })}
-
-          {this.iconWithFFClickCatcher({
-            className: 'fas fa-plus fa-lg',
-            onClick: onAddNewHeader,
-            testId: 'header-action-plus',
-            title: 'Create new header below',
-          })}
-        </div>
-
-        <div className="header-action-drawer__row">
-          {this.iconWithFFClickCatcher({
-            className: 'fas fa-envelope fa-lg',
-            onClick: onShareHeader,
-            testId: 'share',
-            title: 'Share this header via email',
-          })}
-          {this.iconWithFFClickCatcher({
-            className: 'fas fa-calendar-check fa-lg',
-            onClick: onDeadlineClick,
-            title: 'Set deadline datetime',
-          })}
-          {this.iconWithFFClickCatcher({
-            className: 'far fa-calendar-check fa-lg',
-            onClick: onScheduledClick,
-            title: 'Set scheduled datetime',
-          })}
-          {hasActiveClock
-            ? this.iconWithFFClickCatcher({
-                className: 'fas fa-hourglass-end fa-lg',
-                onClick: onClockInOutClick,
-                testId: 'org-clock-out',
-                title: 'Clock out (Stop the clock)',
-              })
-            : this.iconWithFFClickCatcher({
-                className: 'fas fa-hourglass-start fa-lg',
-                onClick: onClockInOutClick,
-                testId: 'org-clock-in',
-                title: 'Clock in (Start the clock)',
-              })}
-
-          {this.iconWithFFClickCatcher({
-            className: 'fas fa-file-export fa-lg',
-            onClick: onRefileHeader,
-            testId: 'org-refile',
-            title: 'Refile this header to another header',
-          })}
-          {this.iconWithFFClickCatcher({
-            className: 'far fa-sticky-note fa-lg',
-            onClick: onAddNote,
-            title: 'Add a note',
-          })}
         </div>
       </div>
     );

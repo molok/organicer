@@ -42,6 +42,7 @@ class Header extends PureComponent {
       'handleNarrow',
       'handleWiden',
       'handleAddNewHeader',
+      'handleAddNestedHeader',
       'handleRest',
       'handleDeadlineClick',
       'handleClockInOutClick',
@@ -237,6 +238,10 @@ class Header extends PureComponent {
 
   handleAddNewHeader() {
     this.props.org.addHeaderAndEdit(this.props.header.get('id'));
+  }
+
+  handleAddNestedHeader() {
+    this.props.org.addNestedHeaderAndEdit(this.props.header.get('id'));
   }
 
   handleRest() {
@@ -535,6 +540,7 @@ ${header.get('rawDescription')}`;
                   onNarrow={this.handleNarrow}
                   onWiden={this.handleWiden}
                   onAddNewHeader={this.handleAddNewHeader}
+                  onAddNestedHeader={this.handleAddNestedHeader}
                   onDeadlineClick={this.handleDeadlineClick}
                   onClockInOutClick={this.handleClockInOutClick}
                   onScheduledClick={this.handleScheduledClick}

@@ -458,12 +458,18 @@ const moveHeaderLeft = (state, action) => {
 
 const moveHeaderRight = (state, action) => {
   const headers = state.get('headers');
-  const headerIndex = indexOfHeaderWithId(headers, action.headerId);
+  let headerId = action.headerId
 
-  const previousParentHeaderId = parentIdOfHeaderWithId(headers, action.headerId);
+  if (headerId == null) {
+    headerId = state.get('selectedHeaderId')
+  }
+
+  const headerIndex = indexOfHeaderWithId(headers, headerId);
+
+  const previousParentHeaderId = parentIdOfHeaderWithId(headers, headerId);
 
   state = shiftTreeNestingLevel({ state, headerIndex }, '+');
-  state = openDirectParent(state, action.headerId);
+  state = openDirectParent(state, headerId);
   state = updateCookies(state, previousParentHeaderId, action);
 
   return state;

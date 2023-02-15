@@ -329,6 +329,14 @@ export const addHeaderAndEdit = (headerId) => (dispatch) => {
   dispatch(activatePopup('title-editor'));
 };
 
+
+export const addNestedHeaderAndEdit = (headerId) => (dispatch) => {
+  dispatch(addHeader(headerId));
+  dispatch(selectNextSiblingHeader(headerId));
+  dispatch(moveHeaderRight(null));
+  dispatch(activatePopup('title-editor'));
+};
+
 export const selectNextVisibleHeader = (headerId) => ({
   type: 'SELECT_NEXT_VISIBLE_HEADER',
   headerId,
