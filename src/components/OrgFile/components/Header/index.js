@@ -23,17 +23,17 @@ import { getCurrentTimestamp, millisDuration } from '../../../../lib/timestamps'
 import { Map } from 'immutable';
 
 class Header extends PureComponent {
-  SWIPE_ACTION_ACTIVATION_DISTANCE = 80;
-  FREE_DRAG_ACTIVATION_DISTANCE = 10;
+  // SWIPE_ACTION_ACTIVATION_DISTANCE = 80;
+  // FREE_DRAG_ACTIVATION_DISTANCE = 10;
 
   constructor(props) {
     super(props);
 
     _.bindAll(this, [
       'handleRef',
-      'handleMouseDown',
-      'handleTouchStart',
-      'handleTouchCancel',
+      // 'handleMouseDown',
+      // 'handleTouchStart',
+      // 'handleTouchCancel',
       'handleHeaderClick',
       'handleShowTitleModal',
       'handleShowDescriptionModal',
@@ -64,27 +64,27 @@ class Header extends PureComponent {
 
     // Store member callbacks handling global mouse/touch events to be able to handle dragging
     // interactions outside of the current component.
-    this.globalMouseMoveHandler = this.handleMouseMove.bind(this);
-    this.globalMouseUpHandler = this.handleMouseUp.bind(this);
-    this.globalTouchMoveHandler = this.handleTouchMove.bind(this);
-    this.globalTouchEndHandler = this.handleTouchEnd.bind(this);
+    // this.globalMouseMoveHandler = this.handleMouseMove.bind(this);
+    // this.globalMouseUpHandler = this.handleMouseUp.bind(this);
+    // this.globalTouchMoveHandler = this.handleTouchMove.bind(this);
+    // this.globalTouchEndHandler = this.handleTouchEnd.bind(this);
   }
 
-  addGlobalDragHandlers() {
-    // Begin listening for global mouse/touch events after dragging begins
-    window.addEventListener('mousemove', this.globalMouseMoveHandler);
-    window.addEventListener('mouseup', this.globalMouseUpHandler);
-    window.addEventListener('touchmove', this.globalTouchMoveHandler);
-    window.addEventListener('touchend', this.globalTouchEndHandler);
-  }
-
-  removeGlobalDragHandlers() {
-    // Stop listening for global mouse/touch events after dragging ends
-    window.removeEventListener('mousemove', this.globalMouseMoveHandler);
-    window.removeEventListener('mouseup', this.globalMouseUpHandler);
-    window.removeEventListener('touchmove', this.globalTouchMoveHandler);
-    window.removeEventListener('touchend', this.globalTouchEndHandler);
-  }
+  // addGlobalDragHandlers() {
+  //   // Begin listening for global mouse/touch events after dragging begins
+  //   window.addEventListener('mousemove', this.globalMouseMoveHandler);
+  //   window.addEventListener('mouseup', this.globalMouseUpHandler);
+  //   window.addEventListener('touchmove', this.globalTouchMoveHandler);
+  //   window.addEventListener('touchend', this.globalTouchEndHandler);
+  // }
+  //
+  // removeGlobalDragHandlers() {
+  //   // Stop listening for global mouse/touch events after dragging ends
+  //   window.removeEventListener('mousemove', this.globalMouseMoveHandler);
+  //   window.removeEventListener('mouseup', this.globalMouseUpHandler);
+  //   window.removeEventListener('touchmove', this.globalTouchMoveHandler);
+  //   window.removeEventListener('touchend', this.globalTouchEndHandler);
+  // }
 
   componentDidMount() {
     if (this.containerDiv) {
@@ -93,7 +93,7 @@ class Header extends PureComponent {
   }
 
   componentWillUnmount() {
-    this.removeGlobalDragHandlers();
+    // this.removeGlobalDragHandlers();
   }
 
   handleRef(containerDiv) {
@@ -116,88 +116,88 @@ class Header extends PureComponent {
 
     // Begin listening to global mouse/touch events to allow dragging outside of the current
     // component.
-    this.addGlobalDragHandlers();
+    // this.addGlobalDragHandlers();
   }
 
-  handleDragMove(dragX) {
-    if (this.state.dragStartX === null) {
-      return;
-    }
+  // handleDragMove(dragX) {
+  //   if (this.state.dragStartX === null) {
+  //     return;
+  //   }
+  //
+  //   if (!this.state.isDraggingFreely) {
+  //     if (Math.abs(dragX - this.state.dragStartX) >= this.FREE_DRAG_ACTIVATION_DISTANCE) {
+  //       this.setState({ isDraggingFreely: true });
+  //     }
+  //   }
+  //
+  //   this.setState({ currentDragX: dragX });
+  // }
 
-    if (!this.state.isDraggingFreely) {
-      if (Math.abs(dragX - this.state.dragStartX) >= this.FREE_DRAG_ACTIVATION_DISTANCE) {
-        this.setState({ isDraggingFreely: true });
-      }
-    }
+  // handleDragEnd() {
+  //   const { dragStartX, currentDragX } = this.state;
+  //
+  //   if (!!dragStartX && !!currentDragX) {
+  //     const swipeDistance = currentDragX - dragStartX;
+  //
+  //     if (swipeDistance >= this.SWIPE_ACTION_ACTIVATION_DISTANCE) {
+  //       this.props.org.advanceTodoState(
+  //         this.props.header.get('id'),
+  //         this.props.shouldLogIntoDrawer
+  //       );
+  //     }
+  //
+  //     if (-1 * swipeDistance >= this.SWIPE_ACTION_ACTIVATION_DISTANCE) {
+  //       this.setState({
+  //         isPlayingRemoveAnimation: true,
+  //         heightBeforeRemove: this.containerDiv.offsetHeight,
+  //       });
+  //     }
+  //   }
+  //
+  //   this.setState({
+  //     dragStartX: null,
+  //     currentDragX: null,
+  //     isDraggingFreely: false,
+  //   });
+  //
+  //   this.removeGlobalDragHandlers();
+  // }
 
-    this.setState({ currentDragX: dragX });
-  }
+  // handleDragCancel() {
+  //   this.setState({
+  //     dragStartX: null,
+  //     currentDragX: null,
+  //     isDraggingFreely: false,
+  //   });
+  // }
 
-  handleDragEnd() {
-    const { dragStartX, currentDragX } = this.state;
+  // handleMouseDown(event) {
+  //   this.handleDragStart(event, event.clientX);
+  // }
 
-    if (!!dragStartX && !!currentDragX) {
-      const swipeDistance = currentDragX - dragStartX;
+  // handleMouseMove(event) {
+  //   this.handleDragMove(event.clientX, event.clientY);
+  // }
 
-      if (swipeDistance >= this.SWIPE_ACTION_ACTIVATION_DISTANCE) {
-        this.props.org.advanceTodoState(
-          this.props.header.get('id'),
-          this.props.shouldLogIntoDrawer
-        );
-      }
+  // handleMouseUp() {
+  //   this.handleDragEnd();
+  // }
 
-      if (-1 * swipeDistance >= this.SWIPE_ACTION_ACTIVATION_DISTANCE) {
-        this.setState({
-          isPlayingRemoveAnimation: true,
-          heightBeforeRemove: this.containerDiv.offsetHeight,
-        });
-      }
-    }
+  // handleTouchStart(event) {
+  //   this.handleDragStart(event, event.changedTouches[0].clientX);
+  // }
 
-    this.setState({
-      dragStartX: null,
-      currentDragX: null,
-      isDraggingFreely: false,
-    });
+  // handleTouchMove(event) {
+  //   this.handleDragMove(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+  // }
 
-    this.removeGlobalDragHandlers();
-  }
+  // handleTouchEnd() {
+  //   this.handleDragEnd();
+  // }
 
-  handleDragCancel() {
-    this.setState({
-      dragStartX: null,
-      currentDragX: null,
-      isDraggingFreely: false,
-    });
-  }
-
-  handleMouseDown(event) {
-    this.handleDragStart(event, event.clientX);
-  }
-
-  handleMouseMove(event) {
-    this.handleDragMove(event.clientX, event.clientY);
-  }
-
-  handleMouseUp() {
-    this.handleDragEnd();
-  }
-
-  handleTouchStart(event) {
-    this.handleDragStart(event, event.changedTouches[0].clientX);
-  }
-
-  handleTouchMove(event) {
-    this.handleDragMove(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
-  }
-
-  handleTouchEnd() {
-    this.handleDragEnd();
-  }
-
-  handleTouchCancel() {
-    this.handleDragCancel();
-  }
+  // handleTouchCancel() {
+  //   this.handleDragCancel();
+  // }
 
   handleHeaderClick(event) {
     const classList = event.target.classList;
@@ -436,74 +436,74 @@ ${header.get('rawDescription')}`;
               onTouchStart={this.handleTouchStart}
               onTouchCancel={this.handleTouchCancel}
             >
-              <Motion style={leftSwipeActionContainerStyle}>
-                {(leftInterpolatedStyle) => {
-                  const leftStyle = {
-                    width: leftInterpolatedStyle.width,
-                    backgroundColor: rgbaString(
-                      interpolateColors(
-                        this.state.disabledBackgroundColor,
-                        leftActivatedBackgroundColor,
-                        leftInterpolatedStyle.backgroundColorFactor
-                      )
-                    ),
-                  };
+              {/*<Motion style={leftSwipeActionContainerStyle}>*/}
+              {/*  {(leftInterpolatedStyle) => {*/}
+              {/*    const leftStyle = {*/}
+              {/*      width: leftInterpolatedStyle.width,*/}
+              {/*      backgroundColor: rgbaString(*/}
+              {/*        interpolateColors(*/}
+              {/*          this.state.disabledBackgroundColor,*/}
+              {/*          leftActivatedBackgroundColor,*/}
+              {/*          leftInterpolatedStyle.backgroundColorFactor*/}
+              {/*        )*/}
+              {/*      ),*/}
+              {/*    };*/}
 
-                  const leftIconStyle = {
-                    display: swipedDistance > 30 ? '' : 'none',
-                    color: rgbaString(
-                      interpolateColors(
-                        disabledIconColor,
-                        activatedIconColor,
-                        leftInterpolatedStyle.backgroundColorFactor
-                      )
-                    ),
-                  };
+              {/*    const leftIconStyle = {*/}
+              {/*      display: swipedDistance > 30 ? '' : 'none',*/}
+              {/*      color: rgbaString(*/}
+              {/*        interpolateColors(*/}
+              {/*          disabledIconColor,*/}
+              {/*          activatedIconColor,*/}
+              {/*          leftInterpolatedStyle.backgroundColorFactor*/}
+              {/*        )*/}
+              {/*      ),*/}
+              {/*    };*/}
 
-                  return (
-                    <div className="left-swipe-action-container" style={leftStyle}>
-                      <i
-                        className="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"
-                        style={leftIconStyle}
-                      />
-                    </div>
-                  );
-                }}
-              </Motion>
-              <Motion style={rightSwipeActionContainerStyle}>
-                {(rightInterpolatedStyle) => {
-                  const rightStyle = {
-                    width: rightInterpolatedStyle.width,
-                    backgroundColor: rgbaString(
-                      interpolateColors(
-                        this.state.disabledBackgroundColor,
-                        rightActivatedBackgroundColor,
-                        rightInterpolatedStyle.backgroundColorFactor
-                      )
-                    ),
-                  };
+              {/*    return (*/}
+              {/*      <div className="left-swipe-action-container" style={leftStyle}>*/}
+              {/*        <i*/}
+              {/*          className="fas fa-check swipe-action-container__icon swipe-action-container__icon--left"*/}
+              {/*          style={leftIconStyle}*/}
+              {/*        />*/}
+              {/*      </div>*/}
+              {/*    );*/}
+              {/*  }}*/}
+              {/*</Motion>*/}
+              {/*<Motion style={rightSwipeActionContainerStyle}>*/}
+              {/*  {(rightInterpolatedStyle) => {*/}
+              {/*    const rightStyle = {*/}
+              {/*      width: rightInterpolatedStyle.width,*/}
+              {/*      backgroundColor: rgbaString(*/}
+              {/*        interpolateColors(*/}
+              {/*          this.state.disabledBackgroundColor,*/}
+              {/*          rightActivatedBackgroundColor,*/}
+              {/*          rightInterpolatedStyle.backgroundColorFactor*/}
+              {/*        )*/}
+              {/*      ),*/}
+              {/*    };*/}
 
-                  const rightIconStyle = {
-                    display: -1 * swipedDistance > 30 ? '' : 'none',
-                    color: rgbaString(
-                      interpolateColors(
-                        disabledIconColor,
-                        activatedIconColor,
-                        rightInterpolatedStyle.backgroundColorFactor
-                      )
-                    ),
-                  };
+              {/*    const rightIconStyle = {*/}
+              {/*      display: -1 * swipedDistance > 30 ? '' : 'none',*/}
+              {/*      color: rgbaString(*/}
+              {/*        interpolateColors(*/}
+              {/*          disabledIconColor,*/}
+              {/*          activatedIconColor,*/}
+              {/*          rightInterpolatedStyle.backgroundColorFactor*/}
+              {/*        )*/}
+              {/*      ),*/}
+              {/*    };*/}
 
-                  return (
-                    <div className="right-swipe-action-container" style={rightStyle}>
-                      <i
-                        className="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"
-                        style={rightIconStyle}
-                      />
-                    </div>
-                  );
-                }}
-              </Motion>
+              {/*    return (*/}
+              {/*      <div className="right-swipe-action-container" style={rightStyle}>*/}
+              {/*        <i*/}
+              {/*          className="fas fa-times swipe-action-container__icon swipe-action-container__icon--right"*/}
+              {/*          style={rightIconStyle}*/}
+              {/*        />*/}
+              {/*      </div>*/}
+              {/*    );*/}
+              {/*  }}*/}
+              {/*</Motion>*/}
 
               <div style={{ marginLeft: -16, color }} className="header__bullet">
                 {bulletStyle === 'Fancy' ? '●' : '*'}
@@ -526,30 +526,30 @@ ${header.get('rawDescription')}`;
                 }
               />
 
-              <Collapse
-                isOpened={isSelected && !shouldDisableActions}
-                springConfig={{ stiffness: 300 }}
-                style={{ marginRight: rightSwipeActionContainerStyle.width }}
-              >
-                <HeaderActionDrawer
-                  onTitleClick={this.handleShowTitleModal}
-                  onDescriptionClick={this.handleShowDescriptionModal}
-                  isNarrowed={isNarrowed}
-                  onTagsClick={this.handleShowTagsModal}
-                  onPropertiesClick={this.handleShowPropertyListEditorModal}
-                  onNarrow={this.handleNarrow}
-                  onWiden={this.handleWiden}
-                  onAddNewHeader={this.handleAddNewHeader}
-                  onAddNestedHeader={this.handleAddNestedHeader}
-                  onDeadlineClick={this.handleDeadlineClick}
-                  onClockInOutClick={this.handleClockInOutClick}
-                  onScheduledClick={this.handleScheduledClick}
-                  hasActiveClock={hasActiveClock}
-                  onShareHeader={this.handleShareHeaderClick}
-                  onRefileHeader={this.handleRefileHeaderRequest}
-                  onAddNote={this.handleAddNoteClick}
-                />
-              </Collapse>
+              {/*<Collapse*/}
+              {/*  isOpened={isSelected && !shouldDisableActions}*/}
+              {/*  springConfig={{ stiffness: 300 }}*/}
+              {/*  style={{ marginRight: rightSwipeActionContainerStyle.width }}*/}
+              {/*>*/}
+              {/*  <HeaderActionDrawer*/}
+              {/*    onTitleClick={this.handleShowTitleModal}*/}
+              {/*    onDescriptionClick={this.handleShowDescriptionModal}*/}
+              {/*    isNarrowed={isNarrowed}*/}
+              {/*    onTagsClick={this.handleShowTagsModal}*/}
+              {/*    onPropertiesClick={this.handleShowPropertyListEditorModal}*/}
+              {/*    onNarrow={this.handleNarrow}*/}
+              {/*    onWiden={this.handleWiden}*/}
+              {/*    onAddNewHeader={this.handleAddNewHeader}*/}
+              {/*    onAddNestedHeader={this.handleAddNestedHeader}*/}
+              {/*    onDeadlineClick={this.handleDeadlineClick}*/}
+              {/*    onClockInOutClick={this.handleClockInOutClick}*/}
+              {/*    onScheduledClick={this.handleScheduledClick}*/}
+              {/*    hasActiveClock={hasActiveClock}*/}
+              {/*    onShareHeader={this.handleShareHeaderClick}*/}
+              {/*    onRefileHeader={this.handleRefileHeaderRequest}*/}
+              {/*    onAddNote={this.handleAddNoteClick}*/}
+              {/*  />*/}
+              {/*</Collapse>*/}
 
               <HeaderContent header={header} shouldDisableActions={shouldDisableActions} />
             </div>
