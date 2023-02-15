@@ -29,31 +29,33 @@ export default class HeaderActionDrawer extends PureComponent {
       onAddNestedHeader,
     } = this.props;
 
+    const faSize = "fa-sm"
+
     return (
       <div className="header-action-drawer-container">
         <div className="header-action-drawer__row">
           {this.iconWithFFClickCatcher({
-            className: 'fas fa-heading fa-lg',
+            className: `fas fa-heading ${faSize}`,
             onClick: onTitleClick,
             title: 'Edit header title',
           })}
 
           {this.iconWithFFClickCatcher({
-            className: 'fas fa-align-left fa-lg',
+            className: `fas fa-align-left ${faSize}`,
             onClick: onDescriptionClick,
             title: 'Edit header description',
             testId: 'edit-header-title',
           })}
 
           {this.iconWithFFClickCatcher({
-            className: 'fas fa-plus fa-lg',
+            className: `fas fa-plus ${faSize}`,
             onClick: onAddNewHeader,
             testId: 'header-action-plus',
             title: 'Create new header below',
           })}
 
           {this.iconWithFFClickCatcher({
-            className: 'fas fa-arrow-circle-right fa-lg',
+            className: `fas fa-arrow-circle-right ${faSize}`,
             onClick: onAddNestedHeader,
             testId: 'header-action-plusnested',
             title: 'Create a nested header',
@@ -61,12 +63,12 @@ export default class HeaderActionDrawer extends PureComponent {
 
           {isNarrowed
             ? this.iconWithFFClickCatcher({
-                className: 'fas fa-expand fa-lg',
+                className: `fas fa-expand ${faSize}`,
                 onClick: onWiden,
                 title: 'Widen (Cancelling the narrowing.)',
               })
             : this.iconWithFFClickCatcher({
-                className: 'fas fa-compress fa-lg',
+                className: `fas fa-compress ${faSize}`,
                 onClick: onNarrow,
                 testId: 'header-action-narrow',
                 title:
