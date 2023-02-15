@@ -38,12 +38,12 @@ export default class ActionButton extends PureComponent {
 
     const className = classNames(
       'btn',
-      'btn--circle',
+      // 'btn--circle',
       'action-drawer__btn',
       additionalClassName || '',
       {
         fas: !letter,
-        'fa-lg': !letter,
+        'fa-sm': !letter,
         [`fa-${iconName}`]: !letter,
         'action-drawer__btn--with-sub-icon': !!subIconName,
         'btn--disabled': isDisabled,

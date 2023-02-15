@@ -1,20 +1,21 @@
 .action-drawer-container {
   position: fixed;
-  bottom: 20px;
-  left: 10px;
-  right: 10px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
   white-space: nowrap;
+  background: var(--magenta);
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  z-index: 2;
+  /*z-index: 2;*/
 }
 
 .action-drawer__btn {
   outline: 0;
-  box-shadow: 2px 2px 5px 0px var(--base0-soft);
+  /*box-shadow: 2px 2px 5px 0px var(--base0-soft);*/
 
   position: relative;
 
@@ -26,7 +27,7 @@
   font-weight: bold;
   font-size: 18px;
 
-  height: 60px;
+  height: 10px;
   width: 100%;
 }
 
