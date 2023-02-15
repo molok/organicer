@@ -13,6 +13,10 @@
   /*z-index: 2;*/
 }
 
+.action-drawer-container-loading {
+  background: var(--red);
+}
+
 .action-drawer__btn {
   outline: 0;
   /*box-shadow: 2px 2px 5px 0px var(--base0-soft);*/
@@ -21,7 +25,7 @@
 
   transition-property: opacity;
   transition-duration: 0.2s;
-  background: transparent;
+  background-color: transparent !important;
 }
 
 .action-drawer__done-btn {

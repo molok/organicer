@@ -1,12 +1,12 @@
-import React, { Fragment, useState, useMemo, useRef } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, {Fragment, useMemo, useRef, useState} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { Motion, spring } from 'react-motion';
+import {Motion, spring} from 'react-motion';
 
 import './stylesheet.css';
 
-import { List, Map } from 'immutable';
+import {List, Map} from 'immutable';
 
 import * as orgActions from '../../../../actions/org';
 import * as captureActions from '../../../../actions/capture';
@@ -15,7 +15,7 @@ import * as baseActions from '../../../../actions/base';
 import sampleCaptureTemplates from '../../../../lib/sample_capture_templates';
 
 import ActionButton from './components/ActionButton/';
-import { determineIncludedFiles } from '../../../../reducers/org';
+import {determineIncludedFiles} from '../../../../reducers/org';
 
 const ActionDrawer = ({
   org,
@@ -291,7 +291,7 @@ const ActionDrawer = ({
   const handleAddNestedHeader = () => { org.addNestedHeaderAndEdit(selectedHeaderId); }
 
   return (
-    <div className="action-drawer-container nice-scroll">
+    <div className={`action-drawer-container nice-scroll ${isLoading ? "action-drawer-container-loading" : ""}`} >
       {
         <Fragment>
           {/*<ActionButton*/}
