@@ -281,44 +281,105 @@ const ActionDrawer = ({
     <div className="action-drawer-container nice-scroll">
       {
         <Fragment>
-          <ActionButton
-            iconName="cloud"
-            subIconName="sync-alt"
-            shouldSpinSubIcon={isLoading}
-            isDisabled={shouldDisableSyncButtons || !online}
-            onClick={handleSync}
-            style={{
-              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
-            }}
-            tooltip="Sync changes"
-          />
+          {/*<ActionButton*/}
+          {/*  iconName="cloud"*/}
+          {/*  subIconName="sync-alt"*/}
+          {/*  shouldSpinSubIcon={isLoading}*/}
+          {/*  isDisabled={shouldDisableSyncButtons || !online}*/}
+          {/*  onClick={handleSync}*/}
+          {/*  style={{*/}
+          {/*    opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,*/}
+          {/*  }}*/}
+          {/*  tooltip="Sync changes"*/}
+          {/*/>*/}
+
+          {/*<ActionButton*/}
+          {/*  iconName="calendar-alt"*/}
+          {/*  isDisabled={false}*/}
+          {/*  onClick={handleAgendaClick}*/}
+          {/*  style={{*/}
+          {/*    opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,*/}
+          {/*  }}*/}
+          {/*  tooltip="Show agenda"*/}
+          {/*/>*/}
 
           <ActionButton
-            iconName="calendar-alt"
+            iconName="heading"
             isDisabled={false}
-            onClick={handleAgendaClick}
+            // onClick={handleAgendaClick}
             style={{
               opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
             }}
-            tooltip="Show agenda"
+            tooltip="Edit header title"
           />
-
-          {renderMovementButtons()}
 
           <ActionButton
-            iconName={'search'}
+            iconName="align-left"
             isDisabled={false}
-            onClick={handleSearchButtonClick}
-            additionalClassName={activeClocks !== 0 ? 'active-clock-indicator' : undefined}
+            // onClick={handleAgendaClick}
             style={{
               opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
-              position: 'relative',
-              zIndex: 1,
             }}
-            tooltip="Show Search / Task List"
+            tooltip="Edit header body"
           />
 
-          {renderCaptureButtons()}
+          <ActionButton
+            iconName="plus"
+            isDisabled={false}
+            // onClick={handleAgendaClick}
+            style={{
+              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+            }}
+            tooltip="Create new header below"
+          />
+
+          <ActionButton
+            iconName="arrow-circle-right"
+            isDisabled={false}
+            // onClick={handleAgendaClick}
+            style={{
+              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+            }}
+            tooltip="Create new nested header"
+          />
+
+          <ActionButton
+            iconName="expand"
+            isDisabled={false}
+            // onClick={handleAgendaClick}
+            style={{
+              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+            }}
+            tooltip="Create new nested header"
+          />
+
+
+          <ActionButton
+            iconName="ellipsis-v"
+            isDisabled={false}
+            // onClick={handleAgendaClick}
+            style={{
+              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+            }}
+            tooltip="More"
+          />
+
+          {/*{renderMovementButtons()}*/}
+
+          {/*<ActionButton*/}
+          {/*  iconName={'search'}*/}
+          {/*  isDisabled={false}*/}
+          {/*  onClick={handleSearchButtonClick}*/}
+          {/*  additionalClassName={activeClocks !== 0 ? 'active-clock-indicator' : undefined}*/}
+          {/*  style={{*/}
+          {/*    opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,*/}
+          {/*    position: 'relative',*/}
+          {/*    zIndex: 1,*/}
+          {/*  }}*/}
+          {/*  tooltip="Show Search / Task List"*/}
+          {/*/>*/}
+
+          {/*{renderCaptureButtons()}*/}
         </Fragment>
       }
     </div>
