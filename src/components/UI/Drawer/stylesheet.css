@@ -25,10 +25,10 @@
 
   padding: 15px 10px;
 
-  box-shadow: 0px -1px 35px 0px var(--base03);
+  box-shadow: 0px -1px 5px 0px var(--base03);
   border-bottom: none;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  /*border-top-left-radius: 20px;*/
+  /*border-top-right-radius: 20px;*/
 
   background-color: var(--base3);
   max-height: 92%;
@@ -49,6 +49,7 @@
 }
 
 .drawer__grabber {
+  display: none;
   width: 35px;
   height: 5px;
   background-color: var(--base0);
@@ -67,4 +68,5 @@
   color: var(--base2);
 
   margin-top: 0;
+  font-size: 12px;
 }

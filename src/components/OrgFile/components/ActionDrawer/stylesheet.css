@@ -11,13 +11,14 @@
   justify-content: space-between;
 
   padding-bottom: 15px;
-  padding-top: 15px;
+  padding-top: 10px;
+  border-top: 5px solid var(--magenta);
 
   /*z-index: 2;*/
 }
 
 .action-drawer-container-loading {
-  background: var(--red);
+  border-top: 5px solid var(--orange);
 }
 
 .action-drawer__btn {
