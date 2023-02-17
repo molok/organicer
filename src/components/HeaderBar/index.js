@@ -31,7 +31,6 @@ class HeaderBar extends PureComponent {
       'handleBackClick',
       'handleUndoClick',
       'handleRedoClick',
-      'handleHelpClick',
       'handleSettingsClick',
     ]);
   }
@@ -238,11 +237,6 @@ class HeaderBar extends PureComponent {
     }
   }
 
-  handleHelpClick() {
-    this.props.base.restoreStaticFile('sample');
-    this.props.base.pushModalPage('sample');
-  }
-
   handleSettingsClick() {
     this.props.base.setLastViewedFile(this.props.path);
   }
@@ -293,11 +287,6 @@ class HeaderBar extends PureComponent {
             <Fragment>
               <i className={undoIconClassName} onClick={this.handleUndoClick} title="Undo" />
               <i className={redoIconClassName} onClick={this.handleRedoClick} title="Redo" />
-              <i
-                className="fas fa-question-circle header-bar__actions__item"
-                onClick={this.handleHelpClick}
-                title="Help"
-              />
             </Fragment>
           )}
 
