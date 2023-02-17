@@ -42,12 +42,11 @@ const FileBrowser = ({
   const isTopLevelDirectory = path === '';
 
   return (
-    <div className="file-browser-container">
+    <div>
+    <div className="file-browser-container" style={{marginBottom: "50px"}}>
       {syncBackendType === 'Dropbox' && (
         <h3 className="file-browser__header">Directory: {isTopLevelDirectory ? '/' : path}</h3>
       )}
-
-      <ActionDrawer />
 
       <ul className="file-browser__file-list">
         {!isTopLevelDirectory && (
@@ -106,6 +105,8 @@ const FileBrowser = ({
             </li>
           ))}
       </ul>
+    </div>
+    <ActionDrawer/>
     </div>
   );
 };

@@ -689,7 +689,7 @@ class OrgFile extends PureComponent {
               )}
             </div>
           ) : (
-            <HeaderList shouldDisableActions={shouldDisableActions} />
+            <HeaderList shouldDisableActions={shouldDisableActions} style={{marginBottom: "50px"}}/>
           )}
 
           {isDirty && !shouldDisableDirtyIndicator && (
@@ -702,7 +702,8 @@ class OrgFile extends PureComponent {
               staticFile={staticFile}
             />
           )}
-
+        </div>
+        <div>
           {activePopupType ? (
             <Drawer
               onClose={() => {

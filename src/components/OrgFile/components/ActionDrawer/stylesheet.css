@@ -10,9 +10,11 @@
   align-items: center;
   justify-content: space-between;
 
+  border-top: 5px solid var(--magenta);
   padding-bottom: 15px;
   padding-top: 10px;
-  border-top: 5px solid var(--magenta);
+  padding-left: 4px;
+  padding-right: 4px;
 
   /*z-index: 2;*/
 }
