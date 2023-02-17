@@ -45,8 +45,8 @@ export const readRgbaVariable = (varName) => {
 
 const themes = {
   Solarized: {
-    /* 
-      https://ethanschoonover.com/solarized/ 
+    /*
+      https://ethanschoonover.com/solarized/
     */
     Light: {
       '--base3': '#fdf6e3',
