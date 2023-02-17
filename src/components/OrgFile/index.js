@@ -689,7 +689,7 @@ class OrgFile extends PureComponent {
               )}
             </div>
           ) : (
-            <HeaderList shouldDisableActions={shouldDisableActions} style={{marginBottom: "120px"}}/>
+            <HeaderList shouldDisableActions={shouldDisableActions} style={{marginBottom: "150px"}}/>
           )}
 
           {isDirty && !shouldDisableDirtyIndicator && (
