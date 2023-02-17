@@ -21,7 +21,7 @@
 .file-browser__file-list__element {
   border-top: 1px solid var(--base2);
   padding: 10px;
-  font-family: Courier;
+  font-family: var(--bs-font-monospace);
 }
 
 .file-browser__file-list__element:last-of-type {

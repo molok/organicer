@@ -26,7 +26,7 @@
 .table-cell__insert-timestamp-button {
   color: var(--base0);
 
-  font-family: Courier;
+  font-family: var(--bs-font-monospace);
 
   display: flex;
   align-items: center;

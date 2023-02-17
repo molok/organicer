@@ -1,7 +1,7 @@
 @import '../../../../../../colors.css';
 
 .timestamp-editor__render {
-  font-family: Courier;
+  font-family: var(--bs-font-monospace);
   font-size: 14px;
   color: var(--base01);
 
@@ -34,7 +34,7 @@
 
 .timestamp-editor__field {
   cursor: pointer;
-  font-family: Courier;
+  font-family: var(--bs-font-monospace);
 
   flex: 1;
 

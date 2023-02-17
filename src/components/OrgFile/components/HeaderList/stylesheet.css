@@ -1,7 +1,7 @@
 @import '../../../../colors.css';
 
 .header-list-container {
-  font-family: Courier;
+  font-family: var(--bs-font-monospace);
   margin-top: 10px;
 
   z-index: 1;

@@ -113,6 +113,7 @@ class TitleLine extends PureComponent {
     const titleStyle = {
       color,
       wordBreak: 'break-word',
+      fontWeight: 'bold'
     };
 
     const additionStyle = {

@@ -66,7 +66,7 @@ export default class ActionButton extends PureComponent {
       <button
         className={className}
         onClick={this.handleClick}
-        style={{...style, padding: "8px"}}
+        style={{...style, padding: "8px", color: "var(--base03"}}
         title={tooltip}
         ref={onRef}
       >

@@ -6,8 +6,8 @@ import { interpolateColors, rgbaObject, rgbaString } from '../../../lib/color';
 import './stylesheet.css';
 
 export default ({ isEnabled, onToggle }) => {
-  const disabledColor = rgbaObject(255, 255, 255, 1);
-  const enabledColor = rgbaObject(238, 232, 213, 1);
+  const disabledColor = rgbaObject(158, 159, 161, 1)
+  const enabledColor = rgbaObject(70, 170, 233, 1)
 
   const switchStyle = {
     colorFactor: spring(isEnabled ? 1 : 0, { stiffness: 300 }),

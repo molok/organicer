@@ -29,7 +29,7 @@
   border: 1px solid var(--base0);
   box-sizing: border-box;
 
-  font-family: Courier;
+  font-family: var(--bs-font-monospace);
 }
 
 .keyboard-shortcut-container__shortcut-key--edit-mode {

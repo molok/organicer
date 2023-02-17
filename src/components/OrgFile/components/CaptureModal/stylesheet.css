@@ -6,7 +6,7 @@
 }
 
 .capture-modal-header-path {
-  font-family: Courier;
+  font-family: var(--bs-font-monospace);
   color: var(--base0);
 
   margin-top: 5px;
@@ -14,7 +14,7 @@
 
 .capture-modal-textarea {
   border: 1px solid var(--base01);
-  font-family: Courier;
+  font-family: var(--bs-font-monospace);
   overflow: scroll;
 
   margin-top: 0.5em;
