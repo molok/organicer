@@ -106,7 +106,7 @@ body,
 
 .textarea-description {
   max-height: 60vh;
-  min-height: 60vh;
+  min-height: 50vh;
 }
 
 .App:not(.landing-page) .textfield {
