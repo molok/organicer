@@ -1,10 +1,10 @@
-import React, { PureComponent, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, {PureComponent, Fragment} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { isLandingPage } from '../../util/misc';
+import {isLandingPage} from '../../util/misc';
 
-import { Link, withRouter } from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 
 import logo from '../../images/organice.svg';
 
@@ -12,11 +12,11 @@ import './stylesheet.css';
 
 import * as baseActions from '../../actions/base';
 import * as orgActions from '../../actions/org';
-import { ActionCreators as undoActions } from 'redux-undo';
+import {ActionCreators as undoActions} from 'redux-undo';
 
 import ExternalLink from '../UI/ExternalLink';
 
-import { List } from 'immutable';
+import {List} from 'immutable';
 import _ from 'lodash';
 import classNames from 'classnames';
 
@@ -37,14 +37,14 @@ class HeaderBar extends PureComponent {
 
   getPathRoot() {
     const {
-      location: { pathname },
+      location: {pathname},
     } = this.props;
     return pathname.split('/')[1];
   }
 
   getFilename() {
     const {
-      location: { pathname },
+      location: {pathname},
     } = this.props;
     // only show a filename if it's a file and not a path
     if (pathname.includes('.org')) {
@@ -68,7 +68,7 @@ class HeaderBar extends PureComponent {
         }}
         className="header-bar__back-button"
       >
-        <i className="fas fa-chevron-left" />
+        <i className="fas fa-chevron-left"/>
         <span className="header-bar__back-button__directory-path">{backPath}</span>
       </div>
     );
@@ -76,7 +76,7 @@ class HeaderBar extends PureComponent {
 
   renderOrgFileBackButton() {
     const {
-      location: { pathname },
+      location: {pathname},
     } = this.props;
 
     let filePath = pathname.substr('/file'.length);
@@ -93,8 +93,9 @@ class HeaderBar extends PureComponent {
         onClick={this.handleBackClick}
         className="header-bar__back-button"
       >
-        <i className="fas fa-chevron-left" />
-        <span className="header-bar__back-button__directory-path">File browser</span>
+        {/*<i className="fas fa-chevron-left" />*/}
+        <i className="fas fa-folder-tree fa-xl"/>
+        {/*<span className="header-bar__back-button__directory-path">File browser</span>*/}
       </Link>
     );
   }
@@ -102,7 +103,7 @@ class HeaderBar extends PureComponent {
   renderLogo() {
     return (
       <div className="header-bar__logo-container">
-        <img className="header-bar__logo" src={logo} alt="Logo" width="30" height="30" />
+        <img className="header-bar__logo" src={logo} alt="Logo" width="30" height="30"/>
         <h2 className="header-bar__app-name">organice</h2>
       </div>
     );
@@ -111,7 +112,7 @@ class HeaderBar extends PureComponent {
   renderHomeFileBackButton() {
     return (
       <Link to={`/`} className="header-bar__back-button">
-        <i className="fas fa-chevron-left" />
+        <i className="fas fa-chevron-left"/>
         <span className="header-bar__back-button__directory-path">Home</span>
       </Link>
     );
@@ -120,7 +121,7 @@ class HeaderBar extends PureComponent {
   renderSignInBackButton() {
     return (
       <Link to={`/`} className="header-bar__back-button">
-        <i className="fas fa-chevron-left" />
+        <i className="fas fa-chevron-left"/>
         <span className="header-bar__back-button__directory-path">Home</span>
       </Link>
     );
@@ -133,14 +134,14 @@ class HeaderBar extends PureComponent {
   renderSettingsSubPageBackButton() {
     return (
       <div className="header-bar__back-button" onClick={this.handleBackClick}>
-        <i className="fas fa-chevron-left" />
+        <i className="fas fa-chevron-left"/>
         <span className="header-bar__back-button__directory-path">Settings</span>
       </div>
     );
   }
 
   renderBackButton() {
-    const { activeModalPage } = this.props;
+    const {activeModalPage} = this.props;
 
     switch (activeModalPage) {
       case 'changelog':
@@ -172,7 +173,7 @@ class HeaderBar extends PureComponent {
       case 'changelog':
         return this.renderFileBrowserBackButton();
       default:
-        return <div />;
+        return <div/>;
     }
   }
 
@@ -258,54 +259,57 @@ class HeaderBar extends PureComponent {
         </div>
       );
     } else if (this.getPathRoot() !== 'settings') {
-      const undoIconClassName = classNames('fas fa-undo header-bar__actions__item', {
+      const undoIconClassName = classNames('fas fa-xl fa-undo header-bar__actions__item', {
         'header-bar__actions__item--disabled': !isUndoEnabled,
       });
-      const redoIconClassName = classNames('fas fa-redo header-bar__actions__item', {
+      const redoIconClassName = classNames('fas fa-xl fa-redo header-bar__actions__item', {
         'header-bar__actions__item--disabled': !isRedoEnabled,
       });
 
-      const settingsIconClassName = classNames('fas fa-cogs header-bar__actions__item');
+      const settingsIconClassName = classNames('fas fa-cogs fa-xl header-bar__actions__item');
 
       return (
-        <div className="header-bar__actions">
-          {!isAuthenticated && this.getPathRoot() !== 'sign_in' && (
-            <Link to="/sign_in">
-              <div className="header-bar__actions__item" title="Sign in">
-                Sign in
-              </div>
-            </Link>
-          )}
-
-          {!isAuthenticated && (
-            <ExternalLink href="https://github.com/200ok-ch/organice">
-              <i className="fab fa-github header-bar__actions__item" />
-            </ExternalLink>
-          )}
-
-          {isAuthenticated && !activeModalPage && !!path && (
-            <Fragment>
-              <i className={undoIconClassName} onClick={this.handleUndoClick} title="Undo" />
-              <i className={redoIconClassName} onClick={this.handleRedoClick} title="Redo" />
-            </Fragment>
-          )}
-
-          {isAuthenticated && (
-            <div>
-              {hasUnseenChangelog && (
-                <Link to="/changelog">
-                  <i
-                    className="changelog-icon--has-unseen-changelog header-bar__actions__item fas fa-gift"
-                    title="Changelog"
-                  />
-                </Link>
-              )}
-              <Link to="/settings" onClick={this.handleSettingsClick}>
-                <i className={settingsIconClassName} title="Settings" />
+        <Fragment>
+          <div className="">
+            {!isAuthenticated && this.getPathRoot() !== 'sign_in' && (
+              <Link to="/sign_in">
+                <div className="header-bar__actions__item" title="Sign in">
+                  Sign in
+                </div>
               </Link>
-            </div>
-          )}
-        </div>
+            )}
+
+            {!isAuthenticated && (
+              <ExternalLink href="https://github.com/200ok-ch/organice">
+                <i className="fab fa-github header-bar__actions__item"/>
+              </ExternalLink>
+            )}
+
+            {isAuthenticated && !activeModalPage && !!path && (
+              <Fragment>
+                <i className={undoIconClassName} onClick={this.handleUndoClick} title="Undo"/>
+                <i className={redoIconClassName} onClick={this.handleRedoClick} title="Redo" style={{paddingLeft: "5px"}}/>
+              </Fragment>
+            )}
+          </div>
+          <div className="">
+            {isAuthenticated && (
+              <div>
+                {hasUnseenChangelog && (
+                  <Link to="/changelog">
+                    <i
+                      className="changelog-icon--has-unseen-changelog header-bar__actions__item fas fa-gift"
+                      title="Changelog"
+                    />
+                  </Link>
+                )}
+                <Link to="/settings" onClick={this.handleSettingsClick}>
+                  <i className={settingsIconClassName} title="Settings" style={{paddingLeft: "5px"}}/>
+                </Link>
+              </div>
+            )}
+          </div>
+        </Fragment>
       );
     }
   }
