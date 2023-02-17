@@ -16,6 +16,7 @@ import sampleCaptureTemplates from '../../../../lib/sample_capture_templates';
 
 import ActionButton from './components/ActionButton/';
 import {determineIncludedFiles} from '../../../../reducers/org';
+import {moveHeaderDown, moveHeaderUp, moveSubtreeLeft, moveSubtreeRight} from "../../../../actions/org";
 
 const ActionDrawer = ({
   org,
@@ -291,6 +292,12 @@ const ActionDrawer = ({
   const handleWiden = () => { org.widenHeader(selectedHeaderId); }
   const handleAddNewHeader = () => { org.addHeaderAndEdit(selectedHeaderId)}
   const handleAddNestedHeader = () => { org.addNestedHeaderAndEdit(selectedHeaderId); }
+  const handleMoveHeaderRight = () => { org.moveSubtreeRight(selectedHeaderId)}
+  const handleMoveHeaderLeft = () => { org.moveSubtreeLeft(selectedHeaderId)}
+  const handleMoveHeaderUp = () => { org.moveHeaderUp(selectedHeaderId)}
+  const handleMoveHeaderDown = () => { org.moveHeaderDown(selectedHeaderId)}
+
+  console.log(`selectedHeader: ${selectedHeaderId}, ${!!selectedHeaderId}`)
 
   return (
     <div className={`action-drawer-container nice-scroll ${isLoading ? "action-drawer-container-loading" : ""}`} >
@@ -320,7 +327,7 @@ const ActionDrawer = ({
 
           <ActionButton
             iconName="heading"
-            isDisabled={false}
+            isDisabled={!selectedHeaderId}
             onClick={handleShowTitleModal}
             style={{
               opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
@@ -329,18 +336,60 @@ const ActionDrawer = ({
           />
 
           <ActionButton
-            iconName="align-left"
-            isDisabled={false}
+            iconName="pen-to-square"
+            isDisabled={!selectedHeaderId}
             onClick={handleShowDescriptionModal}
             style={{
               opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
             }}
-            tooltip="Edit header body"
+            tooltip=""
+          />
+
+
+          <ActionButton
+            iconName="arrow-right"
+            isDisabled={!selectedHeaderId}
+            onClick={handleMoveHeaderRight}
+            style={{
+              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+            }}
+            tooltip=""
+          />
+
+
+          <ActionButton
+            iconName="arrow-left"
+            isDisabled={!selectedHeaderId}
+            onClick={handleMoveHeaderLeft}
+            style={{
+              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+            }}
+            tooltip=""
+          />
+
+          <ActionButton
+            iconName="arrow-up"
+            isDisabled={!selectedHeaderId}
+            onClick={handleMoveHeaderUp}
+            style={{
+              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+            }}
+            tooltip=""
+          />
+
+          <ActionButton
+            iconName="arrow-down"
+            isDisabled={!selectedHeaderId}
+            onClick={handleMoveHeaderDown}
+            style={{
+              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+            }}
+            tooltip=""
           />
 
           <ActionButton
             iconName="plus"
-            isDisabled={false}
+            isDisabled={!selectedHeaderId}
             onClick={handleAddNewHeader}
             style={{
               opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
@@ -350,7 +399,7 @@ const ActionDrawer = ({
 
           <ActionButton
             iconName="arrow-circle-right"
-            isDisabled={false}
+            isDisabled={!selectedHeaderId}
             onClick={handleAddNestedHeader}
             style={{
               opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
@@ -361,7 +410,7 @@ const ActionDrawer = ({
           { isNarrowedHeaderActive ?
           <ActionButton
             iconName="expand"
-            isDisabled={false}
+            isDisabled={!selectedHeaderId}
             onClick={handleWiden}
             style={{
               opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
@@ -371,7 +420,7 @@ const ActionDrawer = ({
             :
             <ActionButton
               iconName="compress"
-              isDisabled={false}
+              isDisabled={!selectedHeaderId}
               onClick={handleNarrow}
               style={{
                 opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
@@ -381,37 +430,37 @@ const ActionDrawer = ({
 
           }
 
-          { editing ?
-          <ActionButton
-            iconName="pencil"
-            isDisabled={false}
-            onClick={handleEditClick}
-            style={{
-              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
-            }}
-            tooltip="Edit"
-          /> :
-            <ActionButton
-              iconName="eye"
-              isDisabled={false}
-              onClick={handleEditClick}
-              style={{
-                opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
-              }}
-              tooltip="Edit"
-            />
-          }
+          {/*{ editing ?*/}
+          {/*<ActionButton*/}
+          {/*  iconName="pencil"*/}
+          {/*  isDisabled={false}*/}
+          {/*  onClick={handleEditClick}*/}
+          {/*  style={{*/}
+          {/*    opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,*/}
+          {/*  }}*/}
+          {/*  tooltip="Edit"*/}
+          {/*/> :*/}
+          {/*  <ActionButton*/}
+          {/*    iconName="eye"*/}
+          {/*    isDisabled={false}*/}
+          {/*    onClick={handleEditClick}*/}
+          {/*    style={{*/}
+          {/*      opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,*/}
+          {/*    }}*/}
+          {/*    tooltip="Edit"*/}
+          {/*  />*/}
+          {/*}*/}
 
 
-          <ActionButton
-            iconName="ellipsis-v"
-            isDisabled={false}
-            // onClick={handleAgendaClick}
-            style={{
-              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
-            }}
-            tooltip="More"
-          />
+          {/*<ActionButton*/}
+          {/*  iconName="ellipsis-v"*/}
+          {/*  isDisabled={false}*/}
+          {/*  // onClick={handleAgendaClick}*/}
+          {/*  style={{*/}
+          {/*    opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,*/}
+          {/*  }}*/}
+          {/*  tooltip="More"*/}
+          {/*/>*/}
 
           {/*{renderMovementButtons()}*/}
 
