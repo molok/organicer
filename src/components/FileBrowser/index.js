@@ -43,7 +43,7 @@ const FileBrowser = ({
 
   return (
     <div>
-    <div className="file-browser-container" style={{marginBottom: "50px"}}>
+    <div className="file-browser-container" style={{marginBottom: "120px"}}>
       {syncBackendType === 'Dropbox' && (
         <h3 className="file-browser__header">Directory: {isTopLevelDirectory ? '/' : path}</h3>
       )}
