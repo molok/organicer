@@ -410,6 +410,10 @@ export const narrowHeader = (headerId) => ({
   headerId,
 });
 
+export const toggleEdit = () => ({
+  type: 'TOGGLE_EDIT',
+});
+
 export const widenHeader = () => ({
   type: 'WIDEN_HEADER',
 });

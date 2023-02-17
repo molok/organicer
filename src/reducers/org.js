@@ -634,6 +634,10 @@ const narrowHeader = (state, action) => {
   return state.set('narrowedHeaderId', action.headerId);
 };
 
+const toggleEdit = (state) => {
+  return state.set('editing', !state.get('editing'));
+};
+
 const widenHeader = (state) => state.set('narrowedHeaderId', null);
 
 const applyOpennessState = (state, action) => {
@@ -1496,6 +1500,8 @@ const reducer = (state, action) => {
       return action.path ? reduceInFile(state, action, action.path)(setDirty) : inFile(setDirty);
     case 'NARROW_HEADER':
       return inFile(narrowHeader);
+    case 'TOGGLE_EDIT':
+      return toggleEdit(state);
     case 'WIDEN_HEADER':
       return inFile(widenHeader);
     case 'SET_SELECTED_TABLE_ID':

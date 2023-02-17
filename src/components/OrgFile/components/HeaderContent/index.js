@@ -160,6 +160,12 @@ class HeaderContent extends PureComponent {
               onTimestampClick={this.handleLogEntryTimestampClick(header.get('id'))}
               shouldDisableActions={shouldDisableActions}
             />
+
+            { this.props.editing ?
+            <div contentEditable={true}>
+              {createRawDescriptionText(header, false, false)}
+            </div>
+              :
             <AttributedString
               parts={header.get('description')}
               subPartDataAndHandlers={{
@@ -169,6 +175,7 @@ class HeaderContent extends PureComponent {
                 shouldDisableActions,
               }}
             />
+            }
           </Fragment>
         }
       </div>
@@ -179,9 +186,11 @@ class HeaderContent extends PureComponent {
 const mapStateToProps = (state, ownProps) => {
   const path = state.org.present.get('path');
   const file = state.org.present.getIn(['files', path]);
+  const editing = state.org.present.get('editing')
   return {
     isSelected: file.get('selectedHeaderId') === ownProps.header.get('id'),
     dontIndent: state.base.get('shouldNotIndentOnExport'),
+    editing
   };
 };
 

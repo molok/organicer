@@ -29,6 +29,7 @@ const ActionDrawer = ({
   online,
   shouldDisableSyncButtons,
   activeClocks,
+  editing,
   isNarrowedHeaderActive
 }) => {
   const [isDisplayingArrowButtons, setIsDisplayingArrowButtons] = useState(false);
@@ -286,6 +287,7 @@ const ActionDrawer = ({
   }
 
   const handleNarrow = () => { org.narrowHeader(selectedHeaderId); }
+  const handleEditClick = () => { org.toggleEdit(); }
   const handleWiden = () => { org.widenHeader(selectedHeaderId); }
   const handleAddNewHeader = () => { org.addHeaderAndEdit(selectedHeaderId)}
   const handleAddNestedHeader = () => { org.addNestedHeaderAndEdit(selectedHeaderId); }
@@ -379,6 +381,27 @@ const ActionDrawer = ({
 
           }
 
+          { editing ?
+          <ActionButton
+            iconName="pencil"
+            isDisabled={false}
+            onClick={handleEditClick}
+            style={{
+              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+            }}
+            tooltip="Edit"
+          /> :
+            <ActionButton
+              iconName="eye"
+              isDisabled={false}
+              onClick={handleEditClick}
+              style={{
+                opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+              }}
+              tooltip="Edit"
+            />
+          }
+
 
           <ActionButton
             iconName="ellipsis-v"
@@ -416,6 +439,7 @@ const mapStateToProps = (state) => {
   const path = state.org.present.get('path');
   const files = state.org.present.get('files');
   const file = state.org.present.getIn(['files', path], Map());
+  const editing = state.org.present.get('editing');
   const fileSettings = state.org.present.get('fileSettings');
   const searchFiles = determineIncludedFiles(files, fileSettings, path, 'includeInSearch', false);
   const activeClocks = Object.values(
@@ -431,6 +455,7 @@ const mapStateToProps = (state) => {
     isLoading: !state.base.get('isLoading').isEmpty(),
     online: state.base.get('online'),
     activeClocks,
+    editing
   };
 };
 
