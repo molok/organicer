@@ -94,7 +94,7 @@ class HeaderBar extends PureComponent {
         className="header-bar__back-button"
       >
         {/*<i className="fas fa-chevron-left" />*/}
-        <i className="fas fa-folder-tree fa-xl"/>
+        <i className="fas fa-folder-tree fa-xl" style={{paddingRight: "10px"}}/>
         {/*<span className="header-bar__back-button__directory-path">File browser</span>*/}
       </Link>
     );
@@ -270,7 +270,7 @@ class HeaderBar extends PureComponent {
 
       return (
         <Fragment>
-          <div className="">
+          <div className="" style={{display: "flex"}}>
             {!isAuthenticated && this.getPathRoot() !== 'sign_in' && (
               <Link to="/sign_in">
                 <div className="header-bar__actions__item" title="Sign in">
@@ -287,8 +287,8 @@ class HeaderBar extends PureComponent {
 
             {isAuthenticated && !activeModalPage && !!path && (
               <Fragment>
-                <i className={undoIconClassName} onClick={this.handleUndoClick} title="Undo"/>
-                <i className={redoIconClassName} onClick={this.handleRedoClick} title="Redo" style={{paddingLeft: "5px"}}/>
+                <i className={undoIconClassName} onClick={this.handleUndoClick} title="Undo" style={{alignSelf: "center"}}/>
+                <i className={redoIconClassName} onClick={this.handleRedoClick} title="Redo" style={{alignSelf: "center", paddingLeft: "5px"}}/>
               </Fragment>
             )}
           </div>
