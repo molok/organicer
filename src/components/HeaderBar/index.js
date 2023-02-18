@@ -1,4 +1,4 @@
-import React, {PureComponent, Fragment} from 'react';
+import React, {Fragment, PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -19,6 +19,7 @@ import ExternalLink from '../UI/ExternalLink';
 import {List} from 'immutable';
 import _ from 'lodash';
 import classNames from 'classnames';
+import {format, formatRelative} from "date-fns";
 
 class HeaderBar extends PureComponent {
   constructor(props) {
@@ -179,7 +180,7 @@ class HeaderBar extends PureComponent {
 
   renderTitle() {
     const titleContainerWithText = (text) => (
-      <div className="header-bar__title" onClick={this.handleHeaderBarTitleClick}>
+      <div className="header-bar__title" style={{alignSelf: 'center'}} onClick={this.handleHeaderBarTitleClick}>
         {text}
       </div>
     );
@@ -324,12 +325,29 @@ class HeaderBar extends PureComponent {
       return (
         <div className={className}>
           {this.renderBackButton()}
+          <div style={{display: 'flex', flexDirection: 'column'}}>
           {this.renderTitle()}
+          {this.renderChangeTime()}
+          </div>
           {this.renderActions()}
         </div>
       );
     }
     return null;
+  }
+
+  renderChangeTime() {
+    let lastUpdated = ""
+    if (this.props.files) {
+      let current = this.props.files.get(this.props.path)
+      if (current && current.get('lastSyncAt')) {
+        lastUpdated = formatRelative(current.get('lastSyncAt'), new Date())
+        console.log(`new Last Updated: ${lastUpdated}`)
+      }
+    }
+    return (
+      <div style={{alignSelf: 'center', fontSize: '10px'}} className={'header-bar__title'}>{lastUpdated ? (lastUpdated) : ''}</div>
+    )
   }
 }
 
@@ -340,9 +358,11 @@ const mapStateToProps = (state) => {
     activeModalPage: state.base.get('modalPageStack', List()).last(),
     shouldShowTitleInOrgFile: state.base.get('shouldShowTitleInOrgFile'),
     path: state.org.present.get('path'),
+    files: state.org.present.get('files'),
     isUndoEnabled: state.org.past.length > 0,
     isRedoEnabled: state.org.future.length > 0,
     syncBackendType: state.syncBackend.get('client') && state.syncBackend.get('client').type,
+
   };
 };
 
