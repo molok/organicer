@@ -718,13 +718,21 @@ export const _updateHeaderFromDescription = (header, rawUnstrippedDescription) =
 
 const defaultKeywordSets = fromJS([
   {
-    keywords: ['TODO', 'DONE'],
-    completedKeywords: ['DONE'],
+    keywords: [
+      "MAYBE" ,
+      "TODO" ,
+      "NEXT" ,
+      "INPROGRESS" ,
+      "DONE" ,
+      "CANCELLED",
+    ],
+    completedKeywords: ['DONE', 'CANCELLED'],
     default: true,
   },
 ]);
 
 export const parseTitleLine = (titleLine, todoKeywordSets) => {
+  let priority = null
   const allKeywords = todoKeywordSets.flatMap((todoKeywordSet) => {
     return todoKeywordSet.get('keywords');
   });
@@ -732,6 +740,12 @@ export const parseTitleLine = (titleLine, todoKeywordSets) => {
   let rawTitle = titleLine;
   if (todoKeyword) {
     rawTitle = rawTitle.substr(todoKeyword.length + 1);
+    let maybePriority = rawTitle.trim().substring(0, 4)
+    if (["[#A]", "[#B]", "[#C]"].includes(maybePriority)) {
+      // priority = maybePriority.substring(2, 3)
+      priority = maybePriority
+      rawTitle = rawTitle.substring(4)
+    }
   }
 
   // Check for tags.
@@ -747,7 +761,7 @@ export const parseTitleLine = (titleLine, todoKeywordSets) => {
 
   const title = parseMarkupAndCookies(rawTitle);
 
-  return fromJS({ title, rawTitle, todoKeyword, tags });
+  return fromJS({ title, rawTitle, todoKeyword, tags, priority });
 };
 
 export const newHeaderWithTitle = (line, nestingLevel, todoKeywordSets) => {

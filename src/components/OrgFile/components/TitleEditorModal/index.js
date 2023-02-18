@@ -135,6 +135,10 @@ export default class TitleEditorModal extends PureComponent {
     });
   }
 
+  handleNextPrioritySet(priority) {
+    console.log(`new priority: ${priority}`)
+  }
+
   render() {
     return (
       <>
@@ -173,6 +177,14 @@ export default class TitleEditorModal extends PureComponent {
                 Next set
               </button>
             ) : null}
+          </div>
+        )}
+
+        {this.props.editRawValues ? null : (
+          <div style={{display: "flex"}}>
+            <button onClick={this.handleNextPrioritySet.bind(this, "A")} >#A</button>
+            <button onClick={this.handleNextPrioritySet.bind(this, "B")} >#B</button>
+            <button onClick={this.handleNextPrioritySet.bind(this, "C")} >#C</button>
           </div>
         )}
 

@@ -109,6 +109,7 @@ class TitleLine extends PureComponent {
 
     const isTodoKeywordInDoneState = createIsTodoKeywordInDoneState(todoKeywordSets);
     const todoKeyword = header.getIn(['titleLine', 'todoKeyword']);
+    const priorityKeyword = header.getIn(['titleLine', 'priority']);
 
     const titleStyle = {
       color,
@@ -149,6 +150,11 @@ class TitleLine extends PureComponent {
         ) : (
           ''
         )}
+
+        {!!priorityKeyword ? (
+          <span>{priorityKeyword}</span>
+        ) : ('')
+        }
 
         {
           <div style={{ width: '100%' }}>
