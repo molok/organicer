@@ -135,11 +135,11 @@ body,
   vertical-align: middle;
   margin-right: 5px;
 
-  border: 2px solid var(--green);
+  border: 2px solid var(--checkbox-border);
   border-radius: 2px;
   box-sizing: border-box;
 
   display: inline-block;
 
-  color: var(--base00);
+  color: var(--checkbox-tick);
 }

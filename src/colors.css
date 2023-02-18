@@ -58,4 +58,7 @@
   --green-soft: rgba(133, 153, 0, 0.28);
   --basefamily: monospace;
   --action-bar: #1D2026;
+  --checkbox-border: #fff;
+  --checkbox-tick: #fff;
+  --checkbox-bg: #fff
 }
