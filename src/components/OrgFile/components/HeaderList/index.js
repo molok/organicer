@@ -94,14 +94,14 @@ class HeaderList extends PureComponent {
     }
 
     const headerColors = [
-      'var(--blue)',
-      'var(--green)',
-      'var(--cyan)',
-      'var(--yellow)',
-      'var(--blue)',
-      'var(--green)',
-      'var(--cyan)',
-      'var(--yellow)',
+      'var(--heading1)',
+      'var(--heading2)',
+      'var(--heading3)',
+      'var(--heading4)',
+      'var(--heading5)',
+      'var(--heading6)',
+      'var(--heading7)',
+      'var(--heading8)',
     ];
 
     const displayedHeaderRenderData = headerRenderData.filter(

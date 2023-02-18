@@ -133,7 +133,7 @@ const Settings = ({
       <div className="setting-container">
         <div className="setting-label">Theme</div>
         <TabButtons
-          buttons={['Solarized', 'One', 'Gruvbox', 'Smyck', 'Code', 'DoomOne']}
+          buttons={['One']}
           selectedButton={theme}
           onSelect={handleThemeClick}
         />
