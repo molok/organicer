@@ -151,10 +151,6 @@ class TitleLine extends PureComponent {
           ''
         )}
 
-        {!!priorityKeyword ? (
-          <span>{priorityKeyword}</span>
-        ) : ('')
-        }
 
         {
           <div style={{ width: '100%' }}>
@@ -170,7 +166,12 @@ class TitleLine extends PureComponent {
                 {!header.get('opened') && hasContent ? '...' : ''}
               </span>
               {addition ? <span style={additionStyle}>{addition}</span> : null}
+              {!!priorityKeyword ? (
+                <span>{priorityKeyword}</span>
+              ) : ('')
+              }
             </div>
+
             {header.getIn(['titleLine', 'tags']).size > 0 && (
               <div>
                 {header
