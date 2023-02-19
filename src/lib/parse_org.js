@@ -744,7 +744,7 @@ export const parseTitleLine = (titleLine, todoKeywordSets) => {
     if (["[#A]", "[#B]", "[#C]"].includes(maybePriority)) {
       // priority = maybePriority.substring(2, 3)
       priority = maybePriority
-      rawTitle = rawTitle.substring(4)
+      rawTitle = rawTitle.substring(4).trimStart()
     }
   }
 

@@ -140,6 +140,7 @@ export default class TitleEditorModal extends PureComponent {
   }
 
   render() {
+    const currentPriority = this.props.header.getIn(['titleLine', 'priority'])
     return (
       <>
         <h2 className="drawer-modal__title">
@@ -147,23 +148,11 @@ export default class TitleEditorModal extends PureComponent {
         </h2>
 
         {this.props.editRawValues ? null : (
-          <div className="todo-container">
+          <div>
             <TabButtons
               buttons={this.state.todoKeywordSet
                 .get('keywords')
-                .filter(
-                  (todo) =>
-                    this.state.todoKeywordSet
-                      .get('completedKeywords')
-                      .filter((completed) => todo === completed).size === 0
-                )}
-              selectedButton={this.props.header.getIn(['titleLine', 'todoKeyword'])}
-              onSelect={this.handleTodoChange}
-            />
-            <TabButtons
-              buttons={this.state.todoKeywordSet
-                .get('completedKeywords')
-                .filter((todo) => todo !== '')}
+                }
               selectedButton={this.props.header.getIn(['titleLine', 'todoKeyword'])}
               onSelect={this.handleTodoChange}
             />
@@ -181,10 +170,19 @@ export default class TitleEditorModal extends PureComponent {
         )}
 
         {this.props.editRawValues ? null : (
-          <div style={{display: "flex"}}>
-            <button onClick={this.handleNextPrioritySet.bind(this, "A")} >#A</button>
-            <button onClick={this.handleNextPrioritySet.bind(this, "B")} >#B</button>
-            <button onClick={this.handleNextPrioritySet.bind(this, "C")} >#C</button>
+          <div style={{display: "flex", margin: "15px 0px", justifyContent: "flex-start", gap: "15px", flexWrap: "wrap"}}>
+            {/*<div style={{alignSelf: "center"}}><i className={"fas fa-lg fa-circle-exclamation"}/></div>*/}
+            {["[#A]", "[#B]", "[#C]"].map(priority =>
+              (<div style={{
+                border: "1px solid",
+                padding: "5px",
+                // borderRadius: "20%",
+                borderRadius: ".25rem",
+                alignSelf: "center",
+                fontSize: "10px",
+                color: priority === currentPriority ? "var(--orange)": ""
+              }} key={priority} onClick={this.handleNextPrioritySet.bind(this, priority)}>{priority}</div>)
+            )}
           </div>
         )}
 
