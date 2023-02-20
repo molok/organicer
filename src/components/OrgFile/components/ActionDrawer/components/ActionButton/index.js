@@ -34,6 +34,8 @@ export default class ActionButton extends PureComponent {
       tooltip,
       shouldSpinSubIcon,
       onRef,
+      subIconStyle,
+      subIconSize
     } = this.props;
 
     const className = classNames(
@@ -53,7 +55,7 @@ export default class ActionButton extends PureComponent {
 
     const subIconClassName = classNames(
       'fas',
-      'fa-xs',
+      `fa-${!!subIconSize ? subIconSize : "xs"}`,
       `fa-${subIconName}`,
       'action-drawer__btn__sub-icon',
       {
@@ -71,7 +73,7 @@ export default class ActionButton extends PureComponent {
         ref={onRef}
       >
         {!!letter && letter}
-        {!!subIconName && <i className={subIconClassName} />}
+        {!!subIconName && <i className={subIconClassName} style={subIconStyle} />}
       </button>
     );
   }

@@ -299,6 +299,9 @@ const ActionDrawer = ({
 
   console.log(`selectedHeader: ${selectedHeaderId}, ${!!selectedHeaderId}`)
 
+  const handleAgendaClick = () => base.activatePopup('agenda');
+
+
   return (
     <div className={`action-drawer-container nice-scroll ${isLoading ? "action-drawer-container-loading" : ""}`} >
       {
@@ -429,6 +432,48 @@ const ActionDrawer = ({
             />
 
           }
+
+          <ActionButton
+            iconName={'search'}
+            isDisabled={false}
+            onClick={handleSearchButtonClick}
+            additionalClassName={activeClocks !== 0 ? 'active-clock-indicator' : undefined}
+            style={{
+              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+              position: 'relative',
+              zIndex: 1,
+            }}
+            tooltip="Show Search / Task List"
+          />
+
+          <ActionButton
+            iconName="calendar-alt"
+            isDisabled={false}
+            onClick={handleAgendaClick}
+            style={{
+              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+            }}
+            tooltip="Show agenda"
+          />
+
+          <ActionButton
+            iconName="cloud"
+            subIconName="rotate"
+            shouldSpinSubIcon={isLoading}
+            isDisabled={shouldDisableSyncButtons || !online}
+            onClick={handleSync}
+            style={{
+              opacity: isDisplayingArrowButtons || isDisplayingCaptureButtons ? 0 : 1,
+            }}
+            subIconSize={"2xs"}
+            subIconStyle={{
+              filter: "invert(1)",
+              position: "absolute",
+              bottom: "7px",
+              right: "15px"
+            }}
+            tooltip="Sync changes"
+          />
 
           {/*{ editing ?*/}
           {/*<ActionButton*/}
