@@ -23,6 +23,7 @@ export default class TitleEditorModal extends PureComponent {
       'chooseTodoKeywordSet',
       'handleTodoChange',
       'handleNextTodoKeywordSet',
+      'handleNextPrioritySet',
     ]);
 
     const todoKeywordSet = this.chooseTodoKeywordSet(
@@ -136,7 +137,7 @@ export default class TitleEditorModal extends PureComponent {
   }
 
   handleNextPrioritySet(priority) {
-    console.log(`new priority: ${priority}`)
+    this.props.priorityChanged(priority)
   }
 
   render() {

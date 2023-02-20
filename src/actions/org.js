@@ -281,6 +281,15 @@ export const setTodoState = (headerId, newTodoState, logIntoDrawer) => ({
   timestamp: new Date(),
 });
 
+
+export const setPriority = (headerId, newPriority) => ({
+  type: 'SET_PRIORITY',
+  newPriority,
+  headerId,
+  dirtying: true,
+  timestamp: new Date(),
+});
+
 export const enterEditMode = (editModeType) => ({
   type: 'ENTER_EDIT_MODE',
   editModeType,

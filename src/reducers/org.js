@@ -265,6 +265,16 @@ const setTodoState = (state, action) => {
   return state;
 };
 
+const setPriority = (state, action) => {
+  const headers = state.get('headers');
+  const headerIndex = indexOfHeaderWithId(headers, action.headerId);
+  if (headerIndex === -1) {
+    return state;
+  }
+
+  return state.setIn(['headers', headerIndex, 'titleLine', 'priority'], action.newPriority);
+}
+
 const enterEditMode = (state, action) => state.set('editMode', action.editModeType);
 
 const exitEditMode = (state) => state.set('editMode', null);
@@ -1456,6 +1466,8 @@ const reducer = (state, action) => {
       return inFile(advanceTodoState);
     case 'SET_TODO_STATE':
       return inFile(setTodoState);
+    case 'SET_PRIORITY':
+      return inFile(setPriority);
     case 'ENTER_EDIT_MODE':
       return inFile(enterEditMode);
     case 'EXIT_EDIT_MODE':

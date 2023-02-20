@@ -86,6 +86,7 @@ class OrgFile extends PureComponent {
       'getPopupSwitchAction',
       'checkPopupAndHeader',
       'checkPopup',
+      'handlePriorityChange',
     ]);
 
     this.state = {
@@ -367,6 +368,13 @@ class OrgFile extends PureComponent {
     );
   }
 
+  handlePriorityChange(newPriority) {
+    this.props.org.setPriority(
+      this.props.selectedHeaderId,
+      newPriority
+    )
+  }
+
   getPopupSwitchAction(activePopupType) {
     switch (activePopupType) {
       case 'title-editor':
@@ -526,6 +534,7 @@ class OrgFile extends PureComponent {
             onClose={this.getPopupCloseAction('title-editor')}
             saveTitle={this.saveTitle}
             onTodoClicked={this.handleTodoChange}
+            priorityChanged={this.handlePriorityChange}
             header={selectedHeader}
             setPopupCloseActionValuesAccessor={setPopupCloseActionValuesAccessor}
           />
