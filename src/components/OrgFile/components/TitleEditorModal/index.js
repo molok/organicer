@@ -143,23 +143,11 @@ export default class TitleEditorModal extends PureComponent {
         </h2>
 
         {this.props.editRawValues ? null : (
-          <div className="todo-container">
+          <div>
             <TabButtons
               buttons={this.state.todoKeywordSet
                 .get('keywords')
-                .filter(
-                  (todo) =>
-                    this.state.todoKeywordSet
-                      .get('completedKeywords')
-                      .filter((completed) => todo === completed).size === 0
-                )}
-              selectedButton={this.props.header.getIn(['titleLine', 'todoKeyword'])}
-              onSelect={this.handleTodoChange}
-            />
-            <TabButtons
-              buttons={this.state.todoKeywordSet
-                .get('completedKeywords')
-                .filter((todo) => todo !== '')}
+                }
               selectedButton={this.props.header.getIn(['titleLine', 'todoKeyword'])}
               onSelect={this.handleTodoChange}
             />

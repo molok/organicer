@@ -718,8 +718,15 @@ export const _updateHeaderFromDescription = (header, rawUnstrippedDescription) =
 
 const defaultKeywordSets = fromJS([
   {
-    keywords: ['TODO', 'DONE'],
-    completedKeywords: ['DONE'],
+    keywords: [
+      "MAYBE" ,
+      "TODO" ,
+      "NEXT" ,
+      "INPROGRESS" ,
+      "DONE" ,
+      "CANCELLED",
+    ],
+    completedKeywords: ['DONE', 'CANCELLED'],
     default: true,
   },
 ]);
