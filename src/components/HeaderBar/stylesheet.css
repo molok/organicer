@@ -43,11 +43,6 @@
 
 .header-bar__back-button {
   color: var(--base01);
-  text-decoration: none;
-
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .header-bar__back-button__directory-path {
